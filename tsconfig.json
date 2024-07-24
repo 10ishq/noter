@@ -6,7 +6,10 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "baseUrl": "./src",
-    "typeRoots": ["./node_modules/@types"]
+    "outDir": "./dist",
+    "paths": {
+      "utils/*": ["utils/*"]
+    }
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]

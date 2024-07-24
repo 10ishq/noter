@@ -1,12 +1,7 @@
 import { Schema, model } from 'mongoose';
+import { INote } from 'notes/dtos/note/note.dto';
 
-interface INote {
-  title: string;
-  content: string;
-  userID: string;
-  createdAt?: Date;
-  updatedAt?: Date;
-}
+
 
 const NoteSchema = new Schema<INote>({
   title: { type: String, required: true },
@@ -16,4 +11,4 @@ const NoteSchema = new Schema<INote>({
 
 const NoteModel = model<INote>('Note', NoteSchema);
 
-export { NoteModel, INote };
+export { NoteModel };

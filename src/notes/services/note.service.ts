@@ -1,4 +1,5 @@
-import { INote, NoteModel } from "../schemas/note.schema";
+import { INote } from "notes/dtos/note/note.dto";
+import { NoteModel } from "../schemas/note.schema";
 
 class NoteService {
   async create(noteData: Partial<INote>): Promise<INote> {
