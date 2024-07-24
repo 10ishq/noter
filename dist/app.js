@@ -8,14 +8,20 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const express_2 = require("express");
 const note_route_1 = __importDefault(require("./notes/routes/note.route"));
 const dotenv_1 = __importDefault(require("dotenv"));
+const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
+const fs_1 = __importDefault(require("fs"));
+const path_1 = __importDefault(require("path"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-// Connect to MongoDB
+// Connect to MongoDB using environment variable
 mongoose_1.default.connect(process.env.MONGO_URI)
     .then(() => console.log('Connected to MongoDB'))
     .catch((error) => console.error('Error connecting to MongoDB:', error));
 // Middleware
 app.use((0, express_2.json)());
+// Serve Swagger API documentation
+const swaggerDocument = JSON.parse(fs_1.default.readFileSync(path_1.default.join(__dirname, './notes/routes/routes.swagger.json'), 'utf8'));
+app.use('/api/docs', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swaggerDocument));
 // Routes
 app.use('/api', note_route_1.default);
 // Error handling

@@ -3,18 +3,25 @@ import mongoose from 'mongoose';
 import { json } from 'express';
 import noteRoutes from './notes/routes/note.route';
 import dotenv from 'dotenv';
+import swaggerUi from 'swagger-ui-express';
+import fs from 'fs';
+import path from 'path';
 
 dotenv.config();
 
 const app = express();
 
-// Connect to MongoDB
+// Connect to MongoDB using environment variable
 mongoose.connect(process.env.MONGO_URI as string)
   .then(() => console.log('Connected to MongoDB'))
   .catch((error) => console.error('Error connecting to MongoDB:', error));
 
 // Middleware
 app.use(json());
+
+// Serve Swagger API documentation
+const swaggerDocument = JSON.parse(fs.readFileSync(path.join(__dirname, './notes/routes/notes.swagger.json'), 'utf8'));
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Routes
 app.use('/api', noteRoutes);
