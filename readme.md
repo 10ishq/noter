@@ -15,7 +15,6 @@
    - [Running with Docker](#running-with-docker)
 5. [API Documentation](#api-documentation)
    - [Endpoints](#endpoints)
-   - [Schemas](#schemas)
 6. [Folder Structure](#folder-structure)
 7. [Testing](#testing)
 8. [Deployment](#deployment)
