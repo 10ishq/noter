@@ -2,12 +2,9 @@ import express from 'express';
 import mongoose from 'mongoose';
 import { json } from 'express';
 import noteRoutes from './notes/routes/note.route';
-import dotenv from 'dotenv';
 import swaggerUi from 'swagger-ui-express';
 import fs from 'fs';
 import path from 'path';
-
-dotenv.config();
 
 const app = express();
 
@@ -20,7 +17,7 @@ mongoose.connect(process.env.MONGO_URI as string)
 app.use(json());
 
 // Serve Swagger API documentation
-const swaggerDocument = JSON.parse(fs.readFileSync(path.join(__dirname, './notes/routes/notes.swagger.json'), 'utf8'));
+const swaggerDocument = JSON.parse(fs.readFileSync(path.join(__dirname, '../swagger/notes.swagger.json'), 'utf8'));
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Routes
