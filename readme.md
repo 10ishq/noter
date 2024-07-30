@@ -1,4 +1,4 @@
-# Noter - (Assignment Submission)
+# Noter 
 
 **Noter** is a scalable, and secure Node.js application for managing notes. Built with TypeScript, Express, and MongoDB, Noter provides a robust API for creating, retrieving, updating, and deleting notes. The project is designed with a modular architecture and includes comprehensive API documentation.
 
